@@ -1,0 +1,66 @@
+<div class="row">
+    <div  class="col-md-6 offset-md-3">
+        <div *ngIf="weather; else waiting">
+        <div class="col-sm-12 text-center">
+
+            <div class="input-group mt-5">
+                <input class="form-control" type="text" #userIp placeholder="Enter City Name...">
+                <div class="input-group-append">
+                    <button class="input-group-text-btn btn-outline-primary" (click)="getCity(userIp.value)">
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <h5>Current Weather in your city...</h5>
+            <h1>Weather in {{weather.name}},{{weather.sys.country}}</h1>
+        </div>
+
+        <div class="col-sm-12 text-center">
+            <span class="temp">
+                <!--<img src="openweathermap.org/img/wn/10d@2x.png" >-->
+                {{weather.main.temp | number: '1.0-0'}} &#176;F
+            </span>
+            <p class="text-uppercase font-italic font-weight-bold">
+                {{weather.weather[0].description}}
+            </p>
+        </div>
+
+        <table class="table table-light table-striped table-bordered table-sm">
+            <tbody>
+                <tr>
+                    <td>Humidity</td><td>{{weather.main.humidity}}%</td>
+                </tr>
+                <tr>
+                    <td>Pressure</td><td>{{weather.main.Pressure}} hpa</td>
+                </tr>
+                <tr>
+                    <td>Sunrise</td><td>{{weather.sys.sunrise * 1000 | date:'H:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>Sunset</td><td>{{weather.sys.sunset * 1000 | date:'H:mm'}}</td>
+                </tr>
+                <tr>
+                    <td>Geo Coords</td><td>[{{weather.coord.lat}}, {{weather.coord.lon}}]</td>
+                </tr>
+            </tbody>
+        </table>
+
+       <agm-map [latitude]="lat" [longitude]="lon" style="height:300px" (mapClick)=getCoords($event)>
+           <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+       </agm-map> 
+    </div>
+</div>
+<ng-template #waiting>
+    <img src="https://media.tenor.com/images/42143b23a4be8a1f857a206774f251fc/tenor.gif" *ngIf="accessDenied">
+
+    <div class="input-group mt-5" *ngIf="accDeniedEnableCity">
+        <input class="form-control" type="text" #userIp placeholder="Enter City Name...">
+        <div class="input-group-append">
+            <button class="input-group-text-btn btn-outline-primary" (click)="getCity(userIp.value)">
+                Search
+            </button>
+        </div>
+    </div>
+</ng-template>
+</div>
