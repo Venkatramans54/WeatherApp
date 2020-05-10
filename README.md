@@ -1,6 +1,8 @@
 # WeatherApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.                                              Technologies Used: Angular, OpenWeatherMap API, Bootstrap
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.                                     
+
+Technologies Used: Angular, OpenWeatherMap API, Bootstrap
 
 ## Development server
 
